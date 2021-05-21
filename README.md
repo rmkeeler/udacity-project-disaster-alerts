@@ -39,9 +39,9 @@ Where `<database_path` is the location of the database you saved when you ran `d
 
 And `<model_save_location>` is the path and filename where you would like to save the model you're training in this step.
 
-At that point, you're basically done. What's left is launching the Flask app, locally. From the project root:
+At that point, you're basically done. What's left is launching the Flask app, locally. Working directory should be the "app" directory (the same directory that contains run.py):
 ```
-python app/run.py
+python run.py
 ```
 The app will launch on a local server at 127.0.0.1:3001, by default. You can change that location by editing app/run.py.
 

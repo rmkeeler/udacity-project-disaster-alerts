@@ -13,7 +13,6 @@ import pickle as pkl
 from sqlalchemy import create_engine
 import re
 
-
 app = Flask(__name__)
 
 def tokenize(text):
@@ -49,11 +48,17 @@ def sort_lists(val_list, label_list, sort_order, top_n):
 
 
 # load data
-engine = create_engine('sqlite:///../data/weatheralerts.db')
-df = pd.read_sql_table('messages', engine)
+try:
+    engine = create_engine('sqlite:///../data/weatheralerts.db')
+    df = pd.read_sql_table('messages', engine)
+except:
+    print('Error accessing database file. Working directory should be same as run.py directory.')
 
 # load model
-model = pkl.load(open("../models/classifier.pkl", "rb"))
+try:
+    model = pkl.load(open("../models/classifier.pkl", "rb"))
+except:
+    print('Error accessing the model pickle. File should be .pkl format and working directory should be same as run.py directory.')
 
 
 # index webpage displays cool visuals and receives user input text for model
