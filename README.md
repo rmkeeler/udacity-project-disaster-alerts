@@ -30,13 +30,15 @@ The secondary motivation was the project's simulated goal: Creating a public web
 
 ## File Descriptions <a name="files"></a>
 
+1. data/process_data.py: Takes file references in command prompt and performs ETL to clean datasets, merge them into one and load into a local db file.
+2. models/train_classifier.py: Extracts data from db file created above, tokenizes messages and builds a predictive model using the resulting tokens. Saves the model to models/classifier.pkl
+3. run.py: The Flask app. Creates a local server instances at 127.0.0.1:3001 and produces the web app, there. Also performs the analyses the populate the bar charts in the app.
+
 ## Licensing, Authors and Acknowledgements <a name="licensing"></a>
 
 Data collected and provided by [Appen](https://appen.com) for the purpose of a project in [Udacity's](https://www.udacity.com) Data Scientist Nanodegree program.
 
-etl.py written by me.
-
-train_classifier.py function names and main() provided by Udacity. Otherwise, the code in that file is mine.
+process_data.py and train_classifier.py provided by Udacity. Functions within them written by me (main() in train_classifier provided by Udacity).
 
 Flask app html and app.py provided by Udacity and altered by me.
 
