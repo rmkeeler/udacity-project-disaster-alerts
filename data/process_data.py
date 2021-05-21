@@ -73,7 +73,7 @@ def cleandata(feats, labs):
     #labels = [x for x in split.columns]
     #replace = {col: {2:1} for col in labels}
     #split.replace(replace, inplace = True)
-    split[split not in [0,1]] = 1
+    split[~split.isin([0,1])] = 1
 
     # STEP 4
     merged.drop(columns = ['categories'], inplace = True)
