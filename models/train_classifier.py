@@ -72,6 +72,13 @@ def tokenize(text):
 
 
 def build_model():
+    """
+    Build a pipeline to extract features from messages and then run them
+    through a multioutput classifier.
+
+    GridSearchCV will test Random Forest against Multinomial Naive Bayes to
+    see which performs best.
+    """
     pipeline = Pipeline([
     ('vect', CountVectorizer(tokenizer = tokenize)),
     ('tfidf', TfidfTransformer()),
