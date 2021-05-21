@@ -20,7 +20,7 @@ Packages used:
 
 ## Usage Instructions <a name="instructions"></a>
 
-Running data/process_data.py and then models/train_classifier.py in that order will put all necessary files where they need to go. Input datasets can be stored anywhere, but it's recommeded to store them in the data directory.
+Running data/process_data.py and then models/train_classifier.py in that order will put all necessary files where they need to go. Input datasets can be stored anywhere, but it's recommended to store them in the data directory.
 
 To run data/process_data.py from the project root:
 ```
@@ -43,9 +43,11 @@ At that point, you're basically done. What's left is launching the Flask app, lo
 ```
 python run.py
 ```
-The app will launch on a local server at 127.0.0.1:3001, by default. You can change that location by editing app/run.py.
+The app will launch on a local server at 127.0.0.1:3001, by default. You can change that location by editing app/run.py. You should see this when you access the server location:
 
-app/run.py also contains the plotly objects and the pandas analysis steps necessary to produce their data. Feel freee to edit, as desired.
+![Home Screenshot](https://github.com/rmkeeler/udacity-project-disaster-alerts/blob/master/screenshots/app_classification.png)
+
+app/run.py also contains the plotly objects and the pandas analysis steps necessary to produce their data. Feel free to edit, as desired.
 
 ## Project Movitation <a name="motivation"></a>
 
