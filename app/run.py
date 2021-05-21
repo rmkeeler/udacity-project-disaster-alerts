@@ -35,6 +35,19 @@ def tokenize(text):
 
     return lemms
 
+def sort_lists(val_list, label_list, sort_order, top_n):
+    """
+    Designed to take two lists: labels and values.
+    Zips them together, sorts by values, then outputs two lists with matching indices.
+    """
+    zipped = zip(val_list, label_list)
+    ordered = sorted(zipped, reverse = True if sort_order == 'descending' else False)
+    tupled = zip(*ordered)
+    vals, labels = [list(tuple) for tuple in tupled]
+
+    return vals[0:top_n], labels[0:top_n]
+
+
 # load data
 engine = create_engine('sqlite:///../data/weatheralerts.db')
 df = pd.read_sql_table('messages', engine)
@@ -52,6 +65,12 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
+
+    labels = [x for x in df.columns if x not in ['id','message','original','genre']]
+    label_means = [df[x].mean() for x in labels]
+
+    top_vals, top_labels = sort_lists(label_means, labels, 'descending', 6)
+    bot_vals, bot_labels = sort_lists(label_means, labels, 'ascending',6)
 
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
@@ -72,6 +91,42 @@ def index():
                 'xaxis': {
                     'title': "Genre"
                 }
+            }
+        },
+        {'data':[
+            Bar(
+                x = top_labels,
+                y = top_vals,
+                marker_color = 'green'
+            )
+        ],
+
+        'layout':{
+            'title':'Top 6 Categories Represented in Message Set',
+            'yaxis':{
+                'title': '% of Messages Classified'
+            },
+            'xaxis': {
+                'title': 'Alert Category'
+            }
+            }
+        },
+
+        {'data':[
+            Bar(
+                x = bot_labels,
+                y = bot_vals,
+                marker_color = 'red'
+            )
+        ],
+        'layout':{
+            'title':'Bottom 6 Categories Represented in Message Set',
+            'yaxis':{
+                'title':'% of Messages Classified'
+            },
+            'xaxis':{
+                'title': 'Alert Category'
+            }
             }
         }
     ]
