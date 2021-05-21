@@ -30,6 +30,23 @@ Where the `-f` argument specifies the path to a CSV file containing the text mes
 
 And the `-l` argument specifies the path to a CSV file containng the classifications of the messages in the messages file.
 
+To run models/train_classifier from the project root:
+```
+python models/train_classifier.py <database_path> <model_save_location>
+```
+
+Where `<database_path` is the location of the database you saved when you ran `data/process_data`.
+
+And `<model_save_location>` is the path and filename where you would like to save the model you're training in this step.
+
+At that point, you're basically done. What's left is launching the Flask app, locally. From the project root:
+```
+python app/run.py
+```
+The app will launch on a local server at 127.0.0.1:3001, by default. You can change that location by editing app/run.py.
+
+app/run.py also contains the plotly objects and the pandas analysis steps necessary to produce their data. Feel freee to edit, as desired.
+
 ## Project Movitation <a name="motivation"></a>
 
 I undertook this project as part of [Udacity's](https://www.udacity.com) Data Scientist nanodegree program. The primary motivations for this project were:
