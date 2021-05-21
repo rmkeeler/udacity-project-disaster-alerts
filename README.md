@@ -1,9 +1,10 @@
 ## Table of Contents
 
 1. [Installation](#installation)
-2. [Project Motivation](#motivation)
-3. [File Descriptions](#files)
-4. [Licensing, Authors and Acknowledgements](#licensing)
+2. [Usage Instructions](#instructions)
+3. [Project Motivation](#motivation)
+4. [File Descriptions](#files)
+5. [Licensing, Authors and Acknowledgements](#licensing)
 
 ## Installation <a name="installation"></a>
 Python version used: 3.8.7
@@ -16,6 +17,18 @@ Packages used:
 5. Pickle 0.7.5
 6. SQLAlchemy 1.4.15
 7. Flask 1.1.2
+
+## Usage Instructions <a name="instructions"></a>
+
+Running data/process_data.py and then models/train_classifier.py in that order will put all necessary files where they need to go. Input datasets can be stored anywhere, but it's recommeded to store them in the data directory.
+
+To run data/process_data.py from the project root:
+```
+python data/process_data.py -f <messageCSVPath> -l <labelsCSVPath>
+```
+Where the `-f` argument specifies the path to a CSV file containing the text messages from which the model's features will be derived.
+
+And the `-l` argument specifies the path to a CSV file containng the classifications of the messages in the messages file.
 
 ## Project Movitation <a name="motivation"></a>
 

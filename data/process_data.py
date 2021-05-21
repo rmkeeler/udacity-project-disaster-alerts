@@ -28,9 +28,12 @@ def parseargs(argv):
         # Gives user the option to include --features=, if that's more comfortable
         # Short args preceded by '-' in cmd. Long ones by '--'
         opts, args = getopt.getopt(argv, 'hf:l:', ['features=','labels='])
-    except getopt.GetoptError:
+    except:
         print('file.py -f <features.csv> -l <labels.csv>')
         sys.exit()
+
+    if '-f' and '-l' not in sys.argv[1:]:
+        raise Exception('cmd arguments required:\nfile.py -f <features.csv> -l <labels.csv>')
 
     for opt, arg in opts:
         print('Opt: {}'.format(opt))
@@ -44,10 +47,6 @@ def parseargs(argv):
         else:
             print('file.py -f <features.csv> -l <labels.csv>')
             sys.exit()
-
-    print('Features shape: {}'.format(feats.shape))
-    print('Labels shape: {}'.format(labs.shape))
-
     return feats, labs
 
 def cleandata(feats, labs):
@@ -74,9 +73,9 @@ def cleandata(feats, labs):
     cleandata = pd.concat([merged, split], axis = 1)
 
     # STEP 5
-    'Duplicate rows found: {}'.format(str(cleandata.duplicated.sum()))
+    'Duplicate rows found: {}'.format(str(cleandata.duplicated().sum()))
     cleandata.drop_duplicates(inplace = True)
-    'Duplicate rows after drop: {}'.format(str(cleandata.duplicated.sum()))
+    'Duplicate rows after drop: {}'.format(str(cleandata.duplicated().sum()))
 
     return cleandata
 
@@ -86,10 +85,10 @@ def loaddata(cleandata, db_name):
     1. Create Engine
     2. Save df to 'messages' table in the database file
     """
-    engine = create_engine('sqlite:///' + db_name)
-    cleandata.to_sql('messages', engine, index = False)
+    engine = create_engine('sqlite:///data/' + db_name)
+    cleandata.to_sql('messages', engine, index = False, if_exists = 'replace')
 
 if __name__ == '__main__':
-    feats, labs = parseargs(sys.argv[1:])
-    cleandata = cleandata(feats, labs)
-    loaddata(cleandata, 'weatheralerts.db')
+    features, labels = parseargs(sys.argv[1:])
+    cleaned_data = cleandata(features, labels)
+    loaddata(cleaned_data, 'weatheralerts.db')
