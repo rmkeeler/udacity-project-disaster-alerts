@@ -37,14 +37,14 @@
         <hr />
 
         <div class="row">
-            <div class="col-lg-12 form-group-lg">
-                <form action="/go" method="get">
+            <form action="/go" method="get">
+                <div class="form-row form-group-lg">
                     <input type="text" class="form-control form-control-lg" name="query" placeholder="Enter a message to classify">
-                    <div class="col-lg-offset-5">
-                        <button type="submit" class="btn btn-lg btn-success">Classify Message</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="form-row form-group-lg">
+                    <button type="submit" class="btn btn-success btn-lg btn-block">Classify Message</button>
+                </div>
+            </form>
         </div>
 
         {% block message %}

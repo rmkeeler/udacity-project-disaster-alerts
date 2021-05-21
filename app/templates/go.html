@@ -3,12 +3,12 @@
 
 {% block message %}
     <hr />
-    <h4 class="text-center">MESSAGE</h4>
+    <h4 class="text-center">YOU TYPED</h4>
     <p class="text-center"><i>{{query}}</i></p>
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-center">Result</h1>
+    <h1 class="text-center">Likely Message Categories (Green)</h1>
         <ul class="list-group">
             {% for category, classification in classification_result.items() %}
                 {% if classification == 1 %}

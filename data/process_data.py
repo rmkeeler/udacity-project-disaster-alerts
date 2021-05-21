@@ -56,6 +56,7 @@ def cleandata(feats, labs):
     3. Convert category values to 0 or 1
     4. Replace categories column with the new multitude of columns
     5. Remove duplicates
+    6. Replace nonbinary values in labels with 1
     """
     # STEP 1
     merged = feats.merge(labs, how = 'left', on = 'id')
@@ -65,8 +66,14 @@ def cleandata(feats, labs):
     split.columns = split.iloc[0].apply(lambda x: x.split('-')[0]).values
 
     # STEP 3
-    for column in split:
+    for column in split.columns:
         split[column] = split[column].apply(lambda x: int(x[-1]))
+
+    # STEP 3.5
+    #labels = [x for x in split.columns]
+    #replace = {col: {2:1} for col in labels}
+    #split.replace(replace, inplace = True)
+    split[split not in [0,1]] = 1
 
     # STEP 4
     merged.drop(columns = ['categories'], inplace = True)
