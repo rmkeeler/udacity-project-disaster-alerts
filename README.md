@@ -43,9 +43,13 @@ At that point, you're basically done. What's left is launching the Flask app, lo
 ```
 python run.py
 ```
-The app will launch on a local server at 127.0.0.1:3001, by default. You can change that location by editing app/run.py. You should see this when you access the server location:
+The app will launch on a local server at 127.0.0.1:3001, by default. You can change that location by editing app/run.py.
 
-![Home Screenshot](https://github.com/rmkeeler/udacity-project-disaster-alerts/blob/master/screenshots/app_classification.png)
+You should see this when you access the server location:
+![Home Screenshot](https://github.com/rmkeeler/udacity-project-disaster-alerts/blob/master/screenshots/app_home.png)
+
+And this after you submit text via the "classify message" button:
+![Classification Screenshot](https://github.com/rmkeeler/udacity-project-disaster-alerts/blob/master/screenshots/app_classification.png)
 
 app/run.py also contains the plotly objects and the pandas analysis steps necessary to produce their data. Feel free to edit, as desired.
 
